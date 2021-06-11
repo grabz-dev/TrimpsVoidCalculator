@@ -161,3 +161,8 @@ b {
 	width: 100%;
 	margin-bottom:3px;
 }
+
+.attention {
+	background-color: #330046;
+	margin-left: 10px;
+}
