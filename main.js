@@ -51,6 +51,7 @@ var Simulator = (function() {
 			highestLevelCleared
 			lastPortal
 			voidMaxLevel
+            boneVoidMaps
 			arrGoldenUpgrades
 			targetVoidMapsInRestOfRun	//if mode === "zones"
 			lastVoidMap					//if mode === "zones"
@@ -69,6 +70,7 @@ var Simulator = (function() {
 		var highestLevelCleared = data.highestLevelCleared;
 		var lastPortal = data.lastPortal;
 		var voidMaxLevel = data.voidMaxLevel;
+        var boneVoidMaps = data.boneVoidMaps;
 		var arrGoldenUpgrades = data.arrGoldenUpgrades;
 		
 		var lastVoidMap = 0;
@@ -76,6 +78,7 @@ var Simulator = (function() {
 		var startCell = 0;
 		var targetVoidMapsInRestOfRun = 1;
 		var targetZone = data.targetZone;
+        var tracker = 0;
 		
 		if(mode === "zones") {
 			lastVoidMap = data.lastVoidMap;
@@ -91,6 +94,7 @@ var Simulator = (function() {
 		var textResultGoldenInterval = document.getElementById("text_result_golden_interval");
 		var textResultFinalGoldenVoidPrc = document.getElementById("text_result_final_golden_void_prc");
 		var textResultVoidMaxLevel = document.getElementById("text_result_void_max_level");
+        var textResultBoneVoidMaps = document.getElementById("text_result_bone_void_maps");
 		var textResultTargetZone = document.getElementById("text_result_target_zone");
 		var textResultRuns = document.getElementById("text_result_runs");
 		var containerResult = document.getElementById("container_result");
@@ -256,6 +260,11 @@ var Simulator = (function() {
 							
 							_lastVoidMap = 0;
 							drops++;
+                            tracker += boneVoidMaps;
+                            if (tracker >= 100) {
+                                tracker -= 100;
+                                drops++;
+                            }
 							
 							if(mode === "zones") {
 								zoneCount++;
@@ -305,6 +314,7 @@ var Simulator = (function() {
 			textResultGoldenInterval.innerHTML = goldenInterval ? goldenInterval : "none";
 			textResultFinalGoldenVoidPrc.innerHTML = goldenBonus * 100;
 			textResultVoidMaxLevel.innerHTML = max;
+            textResultBoneVoidMaps.innerHTML = boneVoidMaps;
 			textResultTargetZone.innerHTML = targetZone;
 			textResultRuns.innerHTML = runsAmount;
 			
@@ -420,6 +430,7 @@ var Simulator = (function() {
 	var inputHighestZone = document.getElementById("input_highest_zone");
 	var inputLastPortal = document.getElementById("input_last_portal");
 	var inputVoidMaxLevel = document.getElementById("input_void_max_level");
+    var inputBoneVoidMaps = document.getElementById("input_bone_void_maps");
 	var inputTargetZone = document.getElementById("input_target_zone");
 	var inputRuns = document.getElementById("input_runs");
 	var inputGoldenArr = [];
@@ -450,6 +461,7 @@ var Simulator = (function() {
 				if(save.highestZone !== undefined) 		inputHighestZone.value = save.highestZone;
 				if(save.lastPortal !== undefined) 		inputLastPortal.value = save.lastPortal;
 				if(save.voidMaxLevel !== undefined) 	inputVoidMaxLevel.value = save.voidMaxLevel;
+                if(save.boneVoidMaps !== undefined) 	inputBoneVoidMaps.value = save.boneVoidMaps;
 				if(save.targetZone !== undefined) 		inputTargetZone.value = save.targetZone;
 				if(save.runs !== undefined) 			inputRuns.value = save.runs;
 				if(save.targetVoidMapsInRestOfRun !== undefined) inputTargetVoids.value = save.targetVoidMapsInRestOfRun;
@@ -548,6 +560,7 @@ var Simulator = (function() {
 		inputHighestZone.value = Number(game.global.highestLevelCleared + 1);
 		inputLastPortal.value = Number(game.global.lastPortal);
 		inputVoidMaxLevel.value = Number(game.global.voidMaxLevel);
+        inputBoneVoidMaps.value = Number(game.permaBoneBonuses.voidMaps.owned);
 		inputTargetZone.value = Number(game.global.world);
 		inputLastVoidMap.value = Number(game.global.lastVoidMap);
 		inputStartingZone.value = Number(game.global.world);
@@ -639,6 +652,7 @@ var Simulator = (function() {
 		var highestZone 		= parseInt(inputHighestZone.value);
 		var lastPortal			= parseInt(inputLastPortal.value);
 		var voidMaxLevel 		= parseInt(inputVoidMaxLevel.value);
+        var boneVoidMaps        = parseInt(inputBoneVoidMaps.value);
 		var targetZone 			= parseInt(inputTargetZone.value);
 		var runs 				= parseInt(inputRuns.value);
 		var targetVoidMapsInRestOfRun = parseInt(inputTargetVoids.value);
@@ -661,6 +675,7 @@ var Simulator = (function() {
 				achievementBonus : achievementBonus,
 				highestZone : highestZone,
 				voidMaxLevel : voidMaxLevel,
+                boneVoidMaps: boneVoidMaps,
 				lastPortal : lastPortal,
 				targetZone : targetZone,
 				runs : runs,
@@ -686,6 +701,7 @@ var Simulator = (function() {
 			lastPortal : lastPortal,
 			targetZone : targetZone,
 			voidMaxLevel : voidMaxLevel,
+            boneVoidMaps : boneVoidMaps,
 			arrGoldenUpgrades : arrGoldenUpgrades,
 			targetVoidMapsInRestOfRun : targetVoidMapsInRestOfRun,
 			lastVoidMap : lastVoidMap,

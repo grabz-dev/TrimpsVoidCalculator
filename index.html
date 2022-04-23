@@ -49,6 +49,10 @@
 									<div class="left" title="This number is usually the zone you used the Portal in the previous run, if you ended your last run within 25 zones from your highest zone reached. Otherwise, input highest zone reached. If your runs go to zone 200+, input 200, although all values above 200 will be treated as 200. If you imported your save, you probably don't need to worry about this number. Check the help section on the right if you need more info.">Void Max Level <span class="text-color-help">(?)</span>: </div>
 									<input class="right" id="input_void_max_level" type="number"></input>
 								</div>
+                                <div class="child">
+									<div class="left">Bone Permanent Upgrade Level: </div>
+									<input class="right" id="input_bone_void_maps" type="number" min="0" max="10"></input>
+								</div>
 								<br>
 								<div class="child attention" id="table_mode_voids">
 									<div>
@@ -91,6 +95,7 @@
 						<span>Golden Upgrades frequency: <span id="text_result_golden_interval"></span></span><br>
 						<span>Final Golden Upgrades Void %: <span id="text_result_final_golden_void_prc"></span></span><br>
 						<span>Void Max Level: <span id="text_result_void_max_level"></span></span><br>
+                        <span>Bone Permanent Upgrade Level: <span id="text_result_bone_void_maps"></span></span><br>
 						<span>Target zone: <span id="text_result_target_zone"></span></span><br>
 						<span>---------------</span><br>
 						<span>Runs: <span id="text_result_runs"></span></span><br>
@@ -113,7 +118,8 @@
 					<li><b>Highest zone reached</b> - Highest zone from Stats -> Total</li>
 					<li><b>Zone reached previous run</b> - The zone at which you used the Portal previous run. The calculator will assume this was the last run every simulated run.</li>
 					<li><b>Void Max Level</b> - This number is usually the zone you used the Portal in the previous run, if you ended your last run within 25 zones from your highest zone reached. Otherwise, input highest zone reached. If your runs go to zone 200+, input 200, although all values above 200 will be treated as 200.</li>
-					<li><b>Golden Upgrades Void</b> - Select the Golden Upgrades which you purchase as Void, or none if you don't purchase any. For example. if only your third Golden Upgrade is Void, leave the two first boxes blank, then tick the third one.</li><br>
+					<li><b>Bone Permanent Upgrade Level</b> - Your level in the Void Maps upgrade from the Bone Trader Permanent Upgrades section.</li>
+                    <li><b>Golden Upgrades Void</b> - Select the Golden Upgrades which you purchase as Void, or none if you don't purchase any. For example. if only your third Golden Upgrade is Void, leave the two first boxes blank, then tick the third one.</li><br>
 					<li><b>Runs</b> - The amount of runs to perform. The higher the number, the more reliable the data will be.</li>
 				</ul>
 				<table style="border: 1px solid dimgray;width:100%">
