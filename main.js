@@ -555,11 +555,13 @@ var Simulator = (function() {
 				break;
 			}
 		}
+		var universe = game.global.universe;
+		if(universe == 2 && game.global.fluffyExp2 < 5000) temp /= 10;
 		inputHeirloomDrop.value = temp;
 		inputAchievementBonus.value = Number(game.global.achievementBonus);
-		inputHighestZone.value = Number(game.global.highestLevelCleared + 1);
-		inputLastPortal.value = Number(game.global.lastPortal);
-		inputVoidMaxLevel.value = Number(game.global.voidMaxLevel);
+		inputHighestZone.value = Number(universe === 2 ? (game.global.highestRadonLevelCleared + 1) : (game.global.highestLevelCleared + 1));
+		inputLastPortal.value = Number(universe === 2 ? game.global.lastRadonPortal : game.global.lastPortal);
+		inputVoidMaxLevel.value = Number(universe === 2 ? game.global.voidMaxLevel2 : game.global.voidMaxLevel);
         inputBoneVoidMaps.value = Number(game.permaBoneBonuses.voidMaps.owned);
 		inputTargetZone.value = Number(game.global.world);
 		inputLastVoidMap.value = Number(game.global.lastVoidMap);
