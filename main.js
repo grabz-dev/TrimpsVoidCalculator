@@ -548,13 +548,15 @@ var Simulator = (function() {
 		var game = JSON.parse(LZString.decompressFromBase64(inputSaveExport.value));
 		
 		temp = 0;
-		l = game.global.ShieldEquipped.mods.length;
-		for(i = 0; i < l; i++) {
-			if(game.global.ShieldEquipped.mods[i][0] === "voidMaps") {
-				temp = Number(game.global.ShieldEquipped.mods[i][1]);
-				break;
-			}
-		}
+        if(game.global.ShieldEquipped && game.global.ShieldEquipped.mods) {
+            l = game.global.ShieldEquipped.mods.length;
+            for(i = 0; i < l; i++) {
+                if(game.global.ShieldEquipped.mods[i][0] === "voidMaps") {
+                    temp = Number(game.global.ShieldEquipped.mods[i][1]);
+                    break;
+                }
+            }
+        }
 		var universe = game.global.universe;
 		if(universe == 2 && game.global.fluffyExp2 < 5000) temp /= 10;
 		inputHeirloomDrop.value = temp;
